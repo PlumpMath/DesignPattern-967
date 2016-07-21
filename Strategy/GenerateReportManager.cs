@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportCSV: IReport
+    public class GenerateReportManager
     {
-        public void GenerateReport(string[] data)
+        public void GenerateReport(IReport report, string[] data)
         {
-            Console.WriteLine($"CSV Created {data?.Count()}");
+            report.GenerateReport(data);
         }
     }
 }

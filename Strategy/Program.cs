@@ -45,28 +45,30 @@ namespace Strategy
                 "CLEYDSON PEREIRA DE SOUZA          ",
             };
 
+            var generateReportManager = new GenerateReportManager();
+
+            IReport report = null;
+
             if(fileType.Equals("1"))
             {                
-                var dataSorted = data.OrderBy(d => d).ToArray();
-                var reportTxt = new ReportTxt();
-                reportTxt.CreateReportFile(dataSorted);
+                report = new ReportTxt();
             }
             else if (fileType.Equals("2"))
             {
-                var reportCSV = new ReportCSV();
-                reportCSV.CreateReportFile(data.ToArray());
+                report = new ReportCSV();
             }
             else if (fileType.Equals("3"))
             {
-                var dataSorted = data.OrderByDescending(d => d).ToArray();
-                var reportXLS = new ReportXls();
-                reportXLS.CreateReportFile(dataSorted);
+                report = new ReportXls();
             }
             else
             {
                 Console.WriteLine("Report not found");
+                Console.ReadKey();
+                return;
             }
 
+            generateReportManager.GenerateReport(report, data.ToArray());
             Console.ReadKey();
         }
     }
