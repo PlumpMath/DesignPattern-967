@@ -48,20 +48,18 @@ namespace Strategy
             var generateReportManager = new GenerateReportManager();
 
             IReport report = null;
+            MenuInputBase menuTxt = new MenuInputTxt();
+            MenuInputBase menuCsv = new MenuInputCsv();
+            MenuInputBase menuXls = new MenuInputXls();
+            MenuInputBase menuEmpty = new MenuInputEmpty();
 
-            if(fileType.Equals("1"))
-            {                
-                report = new ReportTxt();
-            }
-            else if (fileType.Equals("2"))
-            {
-                report = new ReportCSV();
-            }
-            else if (fileType.Equals("3"))
-            {
-                report = new ReportXls();
-            }
-            else
+            menuTxt.Next = menuCsv;
+            menuCsv.Next = menuXls;
+            menuXls.Next = menuEmpty;
+
+            report = menuTxt.GetReport(fileType);
+
+            if(report == null)
             {
                 Console.WriteLine("Report not found");
                 Console.ReadKey();
