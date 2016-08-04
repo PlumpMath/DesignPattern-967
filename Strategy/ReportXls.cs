@@ -6,36 +6,30 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportXls: IReport
+    public class ReportXls: TemplateReport
     {
-        public void GenerateReport(string[] data)
+        
+        public override bool HasStandardBenefits()
         {
-            var dataSorted = data.OrderByDescending(d => d).ToArray();
-            switch (Program.UserVersion)
-            {
-                case Program.VerionsType.Free:
-                    FreeReport();
-                    break;
-                case Program.VerionsType.Standard:
-                    StandardReport();
-                    break;
-                case Program.VerionsType.Premium:
-                    PremiumReport();
-                    break;
-            }
-            Console.WriteLine($"XLS Created {dataSorted?.Count()}");
+            return countReportGenerated < 3;
         }
-        private void FreeReport()
+
+        public override bool HasPremiumBenefits()
+        {
+            return countReportGenerated < 5;
+        }
+
+        public override void FreeReport()
         {
             Console.WriteLine($"Generating Free version of {this}");
         }
 
-        private void StandardReport()
+        public override void StandardReport()
         {
             Console.WriteLine($"Generating Standard version of {this}");
         }
 
-        private void PremiumReport()
+        public override void PremiumReport()
         {
             Console.WriteLine($"Generating Premium version of {this}");
         }

@@ -6,36 +6,20 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportTxt: IReport
+    public class ReportTxt: TemplateReport
     {
-        public void GenerateReport(string[] data)
-        {
-            var dataSorted = data.OrderBy(d => d).ToArray();
-            switch (Program.UserVersion)
-            {
-                case Program.VerionsType.Free:
-                    FreeReport();
-                    break;
-                case Program.VerionsType.Standard:
-                    StandardReport();
-                    break;
-                case Program.VerionsType.Premium:
-                    PremiumReport();
-                    break;
-            }
-            Console.WriteLine($"TXT Created {dataSorted?.Count()}");
-        }
-        private void FreeReport()
+        
+        public override void FreeReport()
         {
             Console.WriteLine($"Generating Free version of {this}");
         }
 
-        private void StandardReport()
+        public override void StandardReport()
         {
             Console.WriteLine($"Generating Standard version of {this}");
         }
 
-        private void PremiumReport()
+        public override void PremiumReport()
         {
             Console.WriteLine($"Generating Premium version of {this}");
         }

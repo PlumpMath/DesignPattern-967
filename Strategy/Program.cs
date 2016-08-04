@@ -8,22 +8,24 @@ namespace Strategy
 {
     class Program
     {
-        public enum VerionsType { Free, Standard, Premium }
-        public static VerionsType UserVersion = VerionsType.Free;
+        public enum VersionsType { Free, Standard, Premium }
+        public static VersionsType UserVersion = VersionsType.Free;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("###########################################");
-            Console.WriteLine("#            TIPOS DE RELATÓRIOS          #");
-            Console.WriteLine("###########################################");
-            Console.WriteLine("#1 - TXT                                  #");
-            Console.WriteLine("#2 - CSV                                  #");
-            Console.WriteLine("#3 - XLS                                  #");
-            Console.WriteLine("###########################################");
-            Console.WriteLine("Informe o tipo de arquivo para ser gerado: ");
-            
-            var fileType = Console.ReadLine();
-            var data = new List<string>()
+            while (true)
+            {
+                Console.WriteLine("###########################################");
+                Console.WriteLine("#            TIPOS DE RELATÓRIOS          #");
+                Console.WriteLine("###########################################");
+                Console.WriteLine("#1 - TXT                                  #");
+                Console.WriteLine("#2 - CSV                                  #");
+                Console.WriteLine("#3 - XLS                                  #");
+                Console.WriteLine("###########################################");
+                Console.WriteLine("Informe o tipo de arquivo para ser gerado: ");
+
+                var fileType = Console.ReadLine();
+                var data = new List<string>()
             {
                 "PAULO HENRIQUE REGIS MARINHO       ",
                 "THIAGO FOGACA VIEIRA DE SOUZA      ",
@@ -48,29 +50,29 @@ namespace Strategy
                 "CLEYDSON PEREIRA DE SOUZA          ",
             };
 
-            var generateReportManager = new GenerateReportManager();
+                var generateReportManager = new GenerateReportManager();
 
-            IReport report = null;
-            MenuInputBase menuTxt = new MenuInputTxt();
-            MenuInputBase menuCsv = new MenuInputCsv();
-            MenuInputBase menuXls = new MenuInputXls();
-            MenuInputBase menuEmpty = new MenuInputEmpty();
+                IReport report = null;
+                MenuInputBase menuTxt = new MenuInputTxt();
+                MenuInputBase menuCsv = new MenuInputCsv();
+                MenuInputBase menuXls = new MenuInputXls();
+                MenuInputBase menuEmpty = new MenuInputEmpty();
 
-            menuTxt.Next = menuCsv;
-            menuCsv.Next = menuXls;
-            menuXls.Next = menuEmpty;
+                menuTxt.Next = menuCsv;
+                menuCsv.Next = menuXls;
+                menuXls.Next = menuEmpty;
 
-            report = menuTxt.GetReport(fileType);
+                report = menuTxt.GetReport(fileType);
 
-            if(report == null)
-            {
-                Console.WriteLine("Report not found");
-                Console.ReadKey();
-                return;
+                if (report == null)
+                {
+                    Console.WriteLine("Report not found");
+                }
+                else
+                {
+                    generateReportManager.GenerateReport(report, data.ToArray());
+                }
             }
-
-            generateReportManager.GenerateReport(report, data.ToArray());
-            Console.ReadKey();
         }
     }
 }

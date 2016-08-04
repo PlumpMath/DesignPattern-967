@@ -6,36 +6,24 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportCSV: IReport
+    public class ReportCSV: TemplateReport
     {
-        public void GenerateReport(string[] data)
-        {
-            switch (Program.UserVersion)
-            {
-                case Program.VerionsType.Free:
-                    FreeReport();
-                    break;
-                case Program.VerionsType.Standard:
-                    StandardReport();
-                    break;
-                case Program.VerionsType.Premium:
-                    PremiumReport();
-                    break;
-            }
 
-            Console.WriteLine($"CSV Created {data?.Count()}");
+        public override bool HasStandardBenefits()
+        {
+            return countReportGenerated <= 1;
         }
-        private void FreeReport()
+        public override void FreeReport()
         {
             Console.WriteLine($"Generating Free version of {this}");
         }
 
-        private void StandardReport()
+        public override void StandardReport()
         {
             Console.WriteLine($"Generating Standard version of {this}");
         }
 
-        private void PremiumReport()
+        public override void PremiumReport()
         {
             Console.WriteLine($"Generating Premium version of {this}");
         }
