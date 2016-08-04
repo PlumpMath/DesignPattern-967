@@ -8,6 +8,9 @@ namespace Strategy
 {
     class Program
     {
+        public enum VerionsType { Free, Standard, Premium }
+        public static VerionsType UserVersion = VerionsType.Free;
+
         static void Main(string[] args)
         {
             Console.WriteLine("###########################################");
