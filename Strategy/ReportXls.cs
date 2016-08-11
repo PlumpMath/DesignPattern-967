@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportXls
+    public class ReportXls : Report
     {
-        public void CreateReportFile(string[] data)
+        public void CreateReportFile(List<string> data)
         {
-            Console.WriteLine($"XLS Created {data?.Count()}");
+            var dataSorted = data.OrderByDescending(d => d).ToArray();
+            Console.WriteLine($"XLS Created {dataSorted?.Count()}");
         }
     }
 }

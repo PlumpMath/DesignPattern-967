@@ -18,7 +18,7 @@ namespace Strategy
             Console.WriteLine("#3 - XLS                                  #");
             Console.WriteLine("###########################################");
             Console.WriteLine("Informe o tipo de arquivo para ser gerado: ");
-            
+
             var fileType = Console.ReadLine();
             var data = new List<string>()
             {
@@ -45,28 +45,26 @@ namespace Strategy
                 "CLEYDSON PEREIRA DE SOUZA          ",
             };
 
-            if(fileType.Equals("1"))
-            {                
-                var dataSorted = data.OrderBy(d => d).ToArray();
-                var reportTxt = new ReportTxt();
-                reportTxt.CreateReportFile(dataSorted);
+            Report myReport = null;
+
+            if (fileType.Equals("1"))
+            {
+                myReport = new ReportTxt();
+                
             }
             else if (fileType.Equals("2"))
             {
-                var reportCSV = new ReportCSV();
-                reportCSV.CreateReportFile(data.ToArray());
+                myReport = new ReportCSV();
             }
             else if (fileType.Equals("3"))
             {
-                var dataSorted = data.OrderByDescending(d => d).ToArray();
-                var reportXLS = new ReportXls();
-                reportXLS.CreateReportFile(dataSorted);
+                myReport = new ReportXls();
             }
             else
             {
                 Console.WriteLine("Report not found");
             }
-
+            myReport?.CreateReportFile(data);
             Console.ReadKey();
         }
     }

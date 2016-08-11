@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Report.cs" />
     <Compile Include="ReportCSV.cs" />
     <Compile Include="ReportTxt.cs" />
     <Compile Include="ReportXls.cs" />

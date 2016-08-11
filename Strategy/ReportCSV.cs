@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportCSV
+    public class ReportCSV : Report
     {
-        public void CreateReportFile(string[] data)
+        public void CreateReportFile(List<string> data)
         {
             Console.WriteLine($"CSV Created {data?.Count()}");
         }
