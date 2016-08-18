@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportTxt : Report
+    public class ReportTxt : IReport
     {
-        public void CreateReportFile(List<string> data)
+        public IReport NextReport { get; set; }
+
+        public void CreateReportFile(List<string> data, string fileType)
         {
-            var dataSorted = data.OrderBy(d => d).ToArray();
-           
-            Console.WriteLine($"TXT Created {dataSorted?.Count()}");
+            if (fileType == "1")
+            {
+                var dataSorted = data.OrderBy(d => d).ToArray();
+
+                Console.WriteLine($"TXT Created {dataSorted?.Count()}");
+            }
+            else
+            {
+                NextReport.CreateReportFile(data, fileType);
+            }
+
         }
     }
 }

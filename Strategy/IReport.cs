@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public interface Report
+    public interface IReport
     {
-        void CreateReportFile(List<string> data);
+        IReport NextReport { get; set; }
+
+        void CreateReportFile(List<string> data,string fileType);
     }
 }

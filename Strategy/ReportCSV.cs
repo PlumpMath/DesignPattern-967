@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportCSV : Report
+    public class ReportCSV : IReport
     {
-        public void CreateReportFile(List<string> data)
+        public IReport NextReport { get; set; }
+
+
+        public void CreateReportFile(List<string> data, string fileType)
         {
-            Console.WriteLine($"CSV Created {data?.Count()}");
+            if (fileType == "2")
+            {
+                Console.WriteLine($"CSV Created {data?.Count()}");
+            }
+            else
+            {
+                NextReport.CreateReportFile(data, fileType);
+            }
+
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Strategy
 {
@@ -45,27 +42,7 @@ namespace Strategy
                 "CLEYDSON PEREIRA DE SOUZA          ",
             };
 
-            Report myReport = null;
-
-            if (fileType.Equals("1"))
-            {
-                myReport = new ReportTxt();
-                
-            }
-            else if (fileType.Equals("2"))
-            {
-                myReport = new ReportCSV();
-            }
-            else if (fileType.Equals("3"))
-            {
-                myReport = new ReportXls();
-            }
-            else
-            {
-                Console.WriteLine("Report not found");
-            }
-            myReport?.CreateReportFile(data);
-            Console.ReadKey();
+            ReportGenerator.Run(data, fileType);
         }
     }
 }
