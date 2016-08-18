@@ -13,23 +13,23 @@ namespace Strategy
         protected int maxStandard;
         public void GenerateReport(string[] data)
         {
-            Program.VersionsType version = Program.UserVersion;
+            ReportSystem.VersionsType version = ReportSystem.UserVersion;
             
             if (HasPremiumBenefits())
             {
-                version = Program.VersionsType.Premium;
+                version = ReportSystem.VersionsType.Premium;
             }
             else
             if (HasStandardBenefits())
             {
-                version = Program.VersionsType.Standard;
+                version = ReportSystem.VersionsType.Standard;
             }
 
             switch (version)
             {
-                case Program.VersionsType.Free: FreeReport(); break;
-                case Program.VersionsType.Standard: StandardReport(); break;
-                case Program.VersionsType.Premium: PremiumReport(); break;
+                case ReportSystem.VersionsType.Free: FreeReport(); break;
+                case ReportSystem.VersionsType.Standard: StandardReport(); break;
+                case ReportSystem.VersionsType.Premium: PremiumReport(); break;
             }
             countReportGenerated++;
             Console.WriteLine($"{this} Created {data?.Count()}");

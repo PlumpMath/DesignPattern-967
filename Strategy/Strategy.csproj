@@ -51,10 +51,17 @@
     <Compile Include="MenuInputTxt.cs" />
     <Compile Include="MenuInputXls.cs" />
     <Compile Include="ReportCSV.cs" />
+    <Compile Include="ReportSystem.cs" />
     <Compile Include="ReportTxt.cs" />
     <Compile Include="ReportXls.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="State\CreateNewFile.cs" />
+    <Compile Include="State\DownloadFile.cs" />
+    <Compile Include="State\EndSystem.cs" />
+    <Compile Include="State\IUserActionState.cs" />
+    <Compile Include="State\None.cs" />
+    <Compile Include="State\PostFile.cs" />
     <Compile Include="TemplateReport.cs" />
   </ItemGroup>
   <ItemGroup>
