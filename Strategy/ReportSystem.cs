@@ -7,17 +7,26 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
+    public enum VersionsType { Free, Standard, Premium }
+
     public class ReportSystem
     {
-        public enum VersionsType { Free, Standard, Premium }
-        public static VersionsType UserVersion = VersionsType.Free;
+        private string Password;
+        private string Serial;
+        private string UserName;
+        public static VersionsType UserVersion;
         public bool finalize = false;
-        public enum UserActionState
-        {
-            None, CreateNewFile, DownloadFile, FinalizeSystem,
-            End
-        }
+   
         public IUserActionState CurrentState;
+
+        public ReportSystem(VersionsType versionType, string userName, string password, string serial)
+        {
+            UserVersion = versionType;
+            this.UserName = userName;
+            this.Serial = serial;
+            this.Password = password;
+        }
+
         public void Run()
         {
             CurrentState = new None();
