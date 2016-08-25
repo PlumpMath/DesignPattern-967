@@ -17,5 +17,20 @@ namespace Strategy
         {
             Console.WriteLine("Report not found");
         }
+
+        //TODO: alterar para virtual
+        public void FreeReport(List<string> data)
+        {
+            
+        }
+
+        public void PremiumReport(List<string> data)
+        {
+            
+        }
+
+        public void StandardReport(List<string> data)
+        {
+        }
     }
 }

@@ -11,5 +11,11 @@ namespace Strategy
         IReport NextReport { get; set; }
 
         void CreateReportFile(List<string> data,string fileType);
+
+        void FreeReport(List<string> data);
+
+        void StandardReport(List<string> data);
+
+        void PremiumReport(List<string> data);
     }
 }

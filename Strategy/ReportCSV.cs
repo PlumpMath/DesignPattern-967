@@ -6,52 +6,51 @@ using System.Threading.Tasks;
 
 namespace Strategy
 {
-    public class ReportCSV : IReport
+    public class ReportCSV : TemplateReport
     {
-        public IReport NextReport { get; set; }
+        public override IReport NextReport { get; set; }
+
         static int countReportGenerated = 0;
 
-        public void CreateReportFile(List<string> data, string fileType)
+        public override void FreeReport(List<string> data)
         {
-            if (fileType == "2")
-            {
-                switch (Program.UserVersion)
-                {
-                    case Program.VerionsType.Free:
-                        if(countReportGenerated <= 1)
-                            StandardReport(data);
-                        else
-                            FreeReport(data);
-                        break;
-                    case Program.VerionsType.Standard:
-                        StandardReport(data);
-                        break;
-                    case Program.VerionsType.Premium:
-                        PremiumReport(data);
-                        break;
-                }
-                countReportGenerated++;
-                Console.WriteLine($"CSV Created {data?.Count()}");
-            }
-            else
-            {
-                NextReport.CreateReportFile(data, fileType);
-            }            
+            Console.WriteLine($"Generating Free version of {this}");
         }
 
-        private void FreeReport(List<string> data)
-         {
-             Console.WriteLine($"Generating Free version of {this}");
-         }
- 
-         private void StandardReport(List<string> data)
-         {
-             Console.WriteLine($"Generating Standard version of {this}");
-         }
- 
-         private void PremiumReport(List<string> data)
-         {
-             Console.WriteLine($"Generating Premium version of {this}");
-         }
+        public override void StandardReport(List<string> data)
+        {
+            Console.WriteLine($"Generating Standard version of {this}");
+        }
+
+        public override void PremiumReport(List<string> data)
+        {
+            Console.WriteLine($"Generating Premium version of {this}");
+        }
+
+        internal override void IncrementCountReportGenerated()
+        {
+            countReportGenerated++;
+        }
+
+        internal override bool CanGeneratePremium()
+        {
+            return false;
+        }
+
+        public override bool CanGenerateStandard()
+        {
+            return (countReportGenerated <= 1);
+        }
+
+        public override List<string> GetDataSorted(List<string> data)
+        {
+            return data;
+        }
+
+        public override string GetFileType()
+        {
+            return "2";
+        }
+
     }
 }
