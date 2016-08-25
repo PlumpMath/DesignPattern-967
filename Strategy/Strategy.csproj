@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\LogBase.cs" />
+    <Compile Include="Decorator\LogCountReport.cs" />
+    <Compile Include="Decorator\LogVersion.cs" />
     <Compile Include="GenerateReportManager.cs" />
     <Compile Include="MenuInputBase.cs" />
     <Compile Include="IReport.cs" />

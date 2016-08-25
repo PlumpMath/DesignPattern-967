@@ -11,6 +11,12 @@ namespace Strategy
         protected static int countReportGenerated = 0;
         protected int maxFree;
         protected int maxStandard;
+
+        public int CountReport()
+        {
+            return countReportGenerated;
+        }
+
         public void GenerateReport(string[] data)
         {
             VersionsType version = ReportSystem.UserVersion;
