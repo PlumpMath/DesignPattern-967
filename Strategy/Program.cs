@@ -17,20 +17,13 @@ namespace Strategy
             var password = Console.ReadLine();
             Console.WriteLine("Informe o serial: ");
             var serial = Console.ReadLine();
-            VersionsType version;
-            if("123".Equals(serial))
-            {
-                version = VersionsType.Premium;
-            }
-            else if("456".Equals(serial))
-            {
-                version = VersionsType.Standard;
-            }
-            else
-            {
-                version = VersionsType.Free;
-            }
-            var reportSystem = new ReportSystem(version, userName, password,  serial );
+
+            var reportBuilder = new ReportSystemBuilder();
+            
+            var reportSystem = reportBuilder
+                .WithLogin(userName, password)
+                .WithSerial(serial)
+                .build();
             reportSystem.Run();
         }
     }

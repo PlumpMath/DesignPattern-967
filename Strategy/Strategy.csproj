@@ -52,6 +52,7 @@
     <Compile Include="MenuInputXls.cs" />
     <Compile Include="ReportCSV.cs" />
     <Compile Include="ReportSystem.cs" />
+    <Compile Include="ReportSystemBuilder.cs" />
     <Compile Include="ReportTxt.cs" />
     <Compile Include="ReportXls.cs" />
     <Compile Include="Program.cs" />
