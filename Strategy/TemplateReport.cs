@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Strategy.Logs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,31 @@ namespace Strategy
         {
             if (fileType == GetFileType())
             {
+                var reportTxt = this as ReportTxt;
+                if(reportTxt != null)
+                {
+                    new EmailToAdmin().Send(nameof(ReportTxt));
+                    new TextFileLog().Log(nameof(ReportCSV));
+                }
+                else
+                {
+                    var reportCSV = this as ReportCSV;
+                    if(reportCSV != null)
+                    {
+                        new EmailToAdmin().Send(nameof(ReportTxt));
+                        new TextFileLog().Log(nameof(ReportCSV));
+                    }
+                    else
+                    {
+                        var reportXls = this as ReportXls;
+                        if(reportXls != null)
+                        {
+                            new WindowsEventViewerLog().Log(nameof(ReportXls));
+                            new TextFileLog().Log(nameof(ReportCSV));
+                        }
+                    }
+                }
+                
                 var dataSorted = GetDataSorted(data);
 
                 switch (Program.UserVersion)

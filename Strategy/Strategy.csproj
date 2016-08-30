@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IReport.cs" />
+    <Compile Include="Logs\EmailToAdmin.cs" />
+    <Compile Include="Logs\TextFileLog.cs" />
+    <Compile Include="Logs\WindowsEventViewerLog.cs" />
     <Compile Include="NotFoundReport.cs" />
     <Compile Include="ReportCSV.cs" />
     <Compile Include="ReportGenerator.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Strategy.Logs;
+using System;
 using System.Collections.Generic;
 
 namespace Strategy
